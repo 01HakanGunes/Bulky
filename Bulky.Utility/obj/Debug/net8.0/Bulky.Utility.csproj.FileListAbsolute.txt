@@ -1,0 +1,15 @@
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/bin/Debug/net8.0/Bulky.Utility.deps.json
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/bin/Debug/net8.0/Bulky.Utility.runtimeconfig.json
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/bin/Debug/net8.0/Bulky.Utility.dll
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/bin/Debug/net8.0/Bulky.Utility.pdb
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.csproj.AssemblyReference.cache
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.GeneratedMSBuildEditorConfig.editorconfig
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.AssemblyInfoInputs.cache
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.AssemblyInfo.cs
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.csproj.CoreCompileInputs.cache
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.sourcelink.json
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.dll
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/refint/Bulky.Utility.dll
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.pdb
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/Bulky.Utility.genruntimeconfig.cache
+/home/hakan/Documents/Projects/Bulky/Bulky.Utility/obj/Debug/net8.0/ref/Bulky.Utility.dll

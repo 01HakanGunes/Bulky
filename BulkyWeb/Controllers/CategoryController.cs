@@ -1,8 +1,8 @@
-using BulkyWeb.Data;
-using BulkyWeb.Models;
+using Bulky.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyWeb.Controllers
+namespace Bulky.Controllers
 {
 	public class CategoryController : Controller
 	{
@@ -27,9 +27,14 @@ namespace BulkyWeb.Controllers
 		[HttpPost]
 		public IActionResult Create(Category obj)
 		{
-			if (obj.Name == obj.DisplayOrder.ToString())
+			if (_db.Categories.FirstOrDefault(c => c.Name == obj.Name) != null)
 			{
-				ModelState.AddModelError("Name", "Exact Match!");
+				ModelState.AddModelError("Name", "Category with the same name already exists!");
+			}
+
+			if (_db.Categories.FirstOrDefault(c => c.DisplayOrder == obj.DisplayOrder) != null)
+			{
+				ModelState.AddModelError("DisplayOrder", "Display order is occupied!");
 			}
 
 			if (ModelState.IsValid)
@@ -63,6 +68,16 @@ namespace BulkyWeb.Controllers
 		[HttpPost]
 		public IActionResult Edit(Category obj)
 		{
+			if (_db.Categories.FirstOrDefault(c => c.Name == obj.Name) != null)
+			{
+				ModelState.AddModelError("Name", "Category with the same name already exists!");
+			}
+
+			if (_db.Categories.FirstOrDefault(c => c.DisplayOrder == obj.DisplayOrder) != null)
+			{
+				ModelState.AddModelError("DisplayOrder", "Display order is occupied!");
+			}
+
 			if (ModelState.IsValid)
 			{
 				_db.Categories.Update(obj);

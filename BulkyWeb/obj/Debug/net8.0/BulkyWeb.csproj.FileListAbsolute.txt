@@ -103,3 +103,9 @@
 /home/hakan/Documents/Projects/Bulky/BulkyWeb/obj/Debug/net8.0/BulkyWeb.csproj.AssemblyReference.cache
 /home/hakan/Documents/Projects/Bulky/BulkyWeb/obj/Debug/net8.0/BulkyWeb.csproj.CopyComplete
 /home/hakan/Documents/Projects/Bulky/BulkyWeb/obj/Debug/net8.0/BulkyWeb.sourcelink.json
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.DataAccess.dll
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.Models.dll
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.Utility.dll
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.Models.pdb
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.DataAccess.pdb
+/home/hakan/Documents/Projects/Bulky/BulkyWeb/bin/Debug/net8.0/Bulky.Utility.pdb
