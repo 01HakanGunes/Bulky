@@ -1,22 +1,22 @@
-using Bulky.DataAccess.Data;
 using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
+using Bulky.DataAccess.Repository.IRepository;
 
-namespace Bulky.Controllers
+namespace BulkyWeb.Areas.Admin.Controllers
 {
+	[Area("Admin")]
 	public class CategoryController : Controller
 	{
-		private readonly ApplicationDbContext _db;
+		private readonly IUnitOfWork _unitOfWork;
 
-		public CategoryController(ApplicationDbContext db)
+		public CategoryController(IUnitOfWork unitOfWork)
 		{
-			_db = db;
+			_unitOfWork = unitOfWork;
 		}
 
 		public IActionResult Index()
 		{
-			List<Category> objCategoryList = _db.Categories.ToList();
-			return View(objCategoryList);
+			return View(_unitOfWork.categoryRepo.GetAll());
 		}
 
 		public IActionResult Create()
@@ -27,20 +27,20 @@ namespace Bulky.Controllers
 		[HttpPost]
 		public IActionResult Create(Category obj)
 		{
-			if (_db.Categories.FirstOrDefault(c => c.Name == obj.Name) != null)
+			if (_unitOfWork.categoryRepo.Get(c => c.Name == obj.Name) != null)
 			{
 				ModelState.AddModelError("Name", "Category with the same name already exists!");
 			}
 
-			if (_db.Categories.FirstOrDefault(c => c.DisplayOrder == obj.DisplayOrder) != null)
+			if (_unitOfWork.categoryRepo.Get(c => c.DisplayOrder == obj.DisplayOrder) != null)
 			{
 				ModelState.AddModelError("DisplayOrder", "Display order is occupied!");
 			}
 
 			if (ModelState.IsValid)
 			{
-				_db.Categories.Add(obj);
-				_db.SaveChanges();
+				_unitOfWork.categoryRepo.Add(obj);
+				_unitOfWork.Save();
 				TempData["success"] = "Category created successfully!";
 				return RedirectToAction("Index");
 			}
@@ -55,12 +55,15 @@ namespace Bulky.Controllers
 				return NotFound();
 			}
 
-			Category? category = _db.Categories.Find(id);
+			Category? category = _unitOfWork.categoryRepo.Get(c => c.Id == id);
 
 			if (category == null)
 			{
 				return NotFound();
 			}
+
+			TempData["cacheName"] = category.Name;
+			TempData["cacheDisplayOrder"] = category.DisplayOrder;
 
 			return View(category);
 		}
@@ -68,20 +71,23 @@ namespace Bulky.Controllers
 		[HttpPost]
 		public IActionResult Edit(Category obj)
 		{
-			if (_db.Categories.FirstOrDefault(c => c.Name == obj.Name) != null)
+			string? cacheName = TempData["cacheName"] as string;
+			int? cacheDisplayOrder = TempData["cacheDisplayOrder"] as int?;
+
+			if ((obj.Name != cacheName) && (_unitOfWork.categoryRepo.Get(c => c.Name == obj.Name) != null))
 			{
 				ModelState.AddModelError("Name", "Category with the same name already exists!");
 			}
 
-			if (_db.Categories.FirstOrDefault(c => c.DisplayOrder == obj.DisplayOrder) != null)
+			if ((obj.DisplayOrder != cacheDisplayOrder) && (_unitOfWork.categoryRepo.Get(c => c.DisplayOrder == obj.DisplayOrder) != null))
 			{
 				ModelState.AddModelError("DisplayOrder", "Display order is occupied!");
 			}
 
 			if (ModelState.IsValid)
 			{
-				_db.Categories.Update(obj);
-				_db.SaveChanges();
+				_unitOfWork.categoryRepo.Update(obj);
+				_unitOfWork.Save();
 				TempData["success"] = "Category edited successfully!";
 				return RedirectToAction("Index");
 			}
@@ -91,7 +97,7 @@ namespace Bulky.Controllers
 
 		public IActionResult Remove(int id)
 		{
-			Category? category = _db.Categories.FirstOrDefault(c => c.Id == id);
+			Category? category = _unitOfWork.categoryRepo.Get(c => c.Id == id);
 
 			if (category == null)
 			{
@@ -104,8 +110,8 @@ namespace Bulky.Controllers
 		[HttpPost]
 		public IActionResult Remove(Category obj)
 		{
-			_db.Categories.Remove(obj);
-			_db.SaveChanges();
+			_unitOfWork.categoryRepo.Remove(obj);
+			_unitOfWork.Save();
 			TempData["success"] = "Category deleted successfully!";
 			return RedirectToAction("Index");
 		}
